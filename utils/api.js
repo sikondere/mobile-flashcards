@@ -8,6 +8,17 @@ export function submitEntry(deck_id, deck_details) {
     }))
 }
 
-export function removeEntry() {
+export function removeEntry(deck_id) {
+    return AsyncStorage.getItem(STORAGE_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            data[key] = undefined
+            delete data[key]
+            AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+        })
+}
 
+export function fetchAllDecks() {
+    return AsyncStorage.getItem(STORAGE_KEY)
+        .then((results) => {return JSON.parse(results)})
 }
