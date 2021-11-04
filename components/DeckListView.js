@@ -4,43 +4,20 @@ import { View, Text, Button, FlatList } from 'react-native';
 
 class DeckListView extends Component {
 
-    state = {
-        decks: '',
-    };
-
-    getAllDeckKeys = async () => {
-        try {
-            const value = await AsyncStorage.getAllKeys()
-            if(value !== null) {
-                this.setState({decks: value})
-            }
-        }catch(e) {
-             
-        }
-    };
-
-    getDeck = async (deck) => {
-        try {
-            const value = await AsyncStorage.getItem('brian')
-            if(value !== null) {
-                this.setState({decks: value})
-            }
-        }catch(e) {
-             
-        }
-    };
-
     render() {
-
-        return(
-            <View>
-                  
-                <Button 
-                    title = 'view'
-                    onPress = {this.getDeck('brian')}
-                />
-            </View>);
-    }
+        return (
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Home screen</Text>
+          <Button
+            title="Go"
+            onPress={() => this.props.navigation.goBack()}
+          />
+        </View>
+          </View>
+        );
+      }
 }
 
 export default DeckListView;
