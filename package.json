@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "expo": "^43.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",

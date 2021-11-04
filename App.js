@@ -1,16 +1,13 @@
 import * as React from "react";
 import { View, Text } from "react-native";
+import NewDeckView from './components/NewDeckView';
+import DeckListView from './components/DeckListView';
 
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
+    <View>
+      <NewDeckView />
+      <DeckListView />
     </View>
   );
 }
