@@ -8,9 +8,8 @@ class IndividualDeckView extends Component {
         const no_questions = this.props.route.params.no_qns
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-               <Text>{'individual deck'}</Text>
                <Text>{deck}</Text>
-               <Text>{no_questions}</Text>
+               <Text>{no_questions} {'cards'}</Text>
                 <Button 
                     title = 'Add Card'
                     onPress = {() => this.props.navigation.navigate('New Question', {deck: deck})}

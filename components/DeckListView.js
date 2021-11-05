@@ -29,7 +29,7 @@ class DeckListView extends Component {
             {return (
                {
                     key: deck['tile'],
-                    title: deck['tile'] + '\n' + deck['questions'].length,
+                    title: deck['tile'] + '\n' + deck['questions'].length + ' cards',
                     onPress: () => this.props.navigation.navigate('Deck', { deck: deck['tile'], no_qns: deck['questions'].length}), 
                }
             )})
