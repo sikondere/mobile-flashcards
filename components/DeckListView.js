@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
-import { View, Text, Button, FlatList, Animated } from 'react-native';
+import { View, Button, FlatList, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
 import { fetchAllDecks } from '../utils/api';
@@ -42,7 +41,6 @@ class DeckListView extends Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Animated.View style={{opacity}}>
-                    <Text>{JSON.stringify(this.Deck(decks))}</Text>
                     <FlatList 
                         data = {this.Deck(decks)}
                         renderItem = {({item}) => {

@@ -40,7 +40,6 @@ class NewQuestionView extends Component {
         const current_deck = decks[this.props.route.params.deck];
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{JSON.stringify(current_deck)}</Text>
                 <Text>{'Question'}</Text>
                <TextInput 
                     onChangeText={(value) => this.setState({question: value})}
