@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,25 +12,33 @@ import IndividualDeckView from "./components/IndividualDeckView";
 import NewQuestionView from "./components/NewQuestionView";
 import QuizView from "./components/QuizView";
 import reducer from './reducers'
+import { setLocalNotification } from "./utils/notifications";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <View style={{flex:1}}>
-        <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name='New Deck' component={TabRouter} />
-          <Stack.Screen name="Deck" component={IndividualDeckView} />
-          <Stack.Screen name="New Question" component={NewQuestionView} />
-          <Stack.Screen name="Quiz" component={QuizView} />
-        </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-    </Provider>
-  );
+export default class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
+
+  render() {
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{flex:1}}>
+          <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name='New Deck' component={TabRouter} />
+            <Stack.Screen name="Deck" component={IndividualDeckView} />
+            <Stack.Screen name="New Question" component={NewQuestionView} />
+            <Stack.Screen name="Quiz" component={QuizView} />
+          </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </Provider>
+    );
+  }
 }
 
 function TabRouter() {

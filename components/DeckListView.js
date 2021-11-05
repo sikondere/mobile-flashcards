@@ -14,6 +14,7 @@ class DeckListView extends Component {
     componentWillUnmount() {
         const { opacity } = this.state;
         Animated.timing(opacity, { toValue: 0, duration: 1000 }).start()
+        Animated.useNativeDriver = true
     }
 
     componentDidMount() {

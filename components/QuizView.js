@@ -15,6 +15,7 @@ class QuizView extends Component {
 
         const { decks } = this.props;
         const deck = this.props.route.params.deck;
+        const show_questions = this.props.route.params.show_questions;
         const questions = decks[deck]['questions'];
 
         let question ='';
@@ -27,7 +28,7 @@ class QuizView extends Component {
 
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>{
-                question.length < 1 
+                show_questions === false 
                 ? <View>
                     <Text>This deck has no cards</Text>
                     <Button 

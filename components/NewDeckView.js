@@ -19,6 +19,8 @@ class NewDeckView extends Component {
         //save to DB
         submitEntry(deck, {tile:deck, questions: []});
 
+        this.setState({deck: ''})
+
         //navigate to individual deck view
         this.props.navigation.navigate('Deck', { deck: deck, no_qns: 0})
     };
@@ -28,6 +30,7 @@ class NewDeckView extends Component {
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                <TextInput 
+                    value = {this.state.deck}
                     onChangeText={(value) => this.setState({deck: value})}
                />
                 <Button 

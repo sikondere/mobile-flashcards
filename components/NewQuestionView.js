@@ -31,6 +31,12 @@ class NewQuestionView extends Component {
         //save to DB
         submitEntry(deck_title, current_deck);
 
+        this.setState(() => {
+            return {
+                question: '',
+                answer: '',
+            }
+        })
         //navigate to individual deck view
         this.props.navigation.navigate('Deck', { deck: deck_title, no_qns: current_deck['questions'].length})
     };
@@ -42,10 +48,12 @@ class NewQuestionView extends Component {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>{'Question'}</Text>
                <TextInput 
+                    value = {this.state.question}
                     onChangeText={(value) => this.setState({question: value})}
                />
                <Text>{'Answer'}</Text>
                <TextInput 
+                    value = {this.state.answer}
                     onChangeText={(value) => this.setState({answer: value})}
                />
                 <Button 

@@ -5,7 +5,8 @@ class IndividualDeckView extends Component {
 
     render() {
         const deck = this.props.route.params.deck;
-        const no_questions = this.props.route.params.no_qns
+        const no_questions = this.props.route.params.no_qns;
+        const show_questions = this.props.route.params.no_qns > 0 ? true : false;
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                <Text>{deck}</Text>
@@ -16,7 +17,7 @@ class IndividualDeckView extends Component {
                 />
                 <Button 
                     title = 'Take Quiz'
-                    onPress = {() => this.props.navigation.navigate('Quiz', {deck: deck})}
+                    onPress = {() => this.props.navigation.navigate('Quiz', {deck: deck, show_questions: show_questions})}
                 />
             </View>);
     }
