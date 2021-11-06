@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
+
 class IndividualDeckView extends Component {
 
     render() {
@@ -17,7 +18,9 @@ class IndividualDeckView extends Component {
                 />
                 <Button 
                     title = 'Take Quiz'
-                    onPress = {() => this.props.navigation.navigate('Quiz', {deck: deck, show_questions: show_questions})}
+                    onPress = {() => {
+                        this.props.navigation.navigate('Quiz', {deck: deck, show_questions: show_questions})
+                    }}
                 />
             </View>);
     }

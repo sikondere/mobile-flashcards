@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { submitEntry } from '../utils/api';
@@ -45,14 +45,16 @@ class NewQuestionView extends Component {
         const { decks } = this.props
         const current_deck = decks[this.props.route.params.deck];
         return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.container}>
                 <Text>{'Question'}</Text>
                <TextInput 
+                    style = {styles.inputField}
                     value = {this.state.question}
                     onChangeText={(value) => this.setState({question: value})}
                />
                <Text>{'Answer'}</Text>
                <TextInput 
+                    style = {styles.inputField}
                     value = {this.state.answer}
                     onChangeText={(value) => this.setState({answer: value})}
                />
@@ -71,4 +73,16 @@ function mapStateToProps(decks) {
 }
 export default connect(mapStateToProps)(NewQuestionView);
 
+
+const styles = StyleSheet.create({
+    inputField: {
+        backgroundColor: '#4e4cb8',
+        color: '#fff',
+    },
+    container: { 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+    }
+})
 

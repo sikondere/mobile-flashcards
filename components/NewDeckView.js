@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import React, { Component,  } from 'react';
+import { View, Button, TextInput, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { submitEntry } from '../utils/api';
@@ -28,8 +28,9 @@ class NewDeckView extends Component {
     render() {
 
         return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.container}>
                <TextInput 
+                    style = { styles.inputField}
                     value = {this.state.deck}
                     onChangeText={(value) => this.setState({deck: value})}
                />
@@ -47,5 +48,17 @@ function mapStateToProps(dispatch) {
     }
 }
 export default connect(mapStateToProps)(NewDeckView);
+
+const styles = StyleSheet.create({
+    inputField: {
+        backgroundColor: '#4e4cb8',
+        color: '#fff',
+    },
+    container: { 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+    }
+})
 
  

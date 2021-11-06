@@ -1,54 +1,57 @@
-import AsyncStorage from "@react-native-community/async-storage";
-import * as Permissions from 'expo-permissions';
-import * as Notifications from 'expo-notifications'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Notifications from 'expo-notifications';
 
-const NOTIFICATION_KEY = 'mobile-flashcards:notification'
+const NOTIFICATION_KEY = 'mobile-flashcards:notifications';
 
-export function clearLocalNotifications() {
-    return AsyncStorage.removeItem(NOTIFICATION_KEY)
-        .then(Notifications.cancelAllScheduledNotificationsAsync)
+export function clearLocalNotification() {
+    return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+        Notifications.cancelAllScheduledNotificationsAsync
+    );
 }
 
 function createNotification() {
     return {
-        title: 'Study',
-        body: 'Dont forget to study',
+        title: 'take quiz',
+        body: 'study',
+        ios: {
+            sound: true,
+        },
         android: {
             sound: true,
             priority: 'high',
-            sticky: false,
+            sticky: true,
             vibrate: true,
-        }
-    }
+        },
+    };
 }
 
 export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
-            if(data === null) {
-                Permissions.askAsync(Permissions.NOTIFICATIONS)
-                    .then(({ status }) => {
-                        if(status === 'granted') {
-                            Notifications.cancelAllScheduledNotificationsAsync()
-
-                            let tomorrow = new Date();
-                            tomorrow.setDate(tomorrow.getDate()+1);
-                            tomorrow.setHours(14);
-                            tomorrow.setMinutes(0);
-
-                            Notifications.scheduleNotificationAsync(
-                                createNotification(),
-                                {
-                                    time: tomorrow,
-                                    repeat: 'day',
-                                }
-                            )
-
-                            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-
-                        }
-                    })
+            if (data === null) {
+                Notifications.requestPermissionsAsync().then(({ granted }) => {
+                    console.log(granted)
+                    if (granted) {
+                        Notifications.cancelAllScheduledNotificationsAsync().then(
+                            () => {
+                                Notifications.scheduleNotificationAsync({
+                                    content: createNotification(),
+                                    trigger: {
+                                        hour: 9, 
+                                        minute: 30, 
+                                        repeats: true 
+                                    },
+                                }).then(() => {
+                                    AsyncStorage.setItem(
+                                        NOTIFICATION_KEY,
+                                        JSON.stringify(true)
+                                    );
+                                });
+                            }
+                        );
+                    }
+                });
             }
-        })
+        });
 }

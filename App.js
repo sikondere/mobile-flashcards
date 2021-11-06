@@ -29,7 +29,7 @@ export default class App extends React.Component {
         <View style={{flex:1}}>
           <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name='New Deck' component={TabRouter} />
+            <Stack.Screen name='New Deck' component={TabRouter} options={{headerShown: false}} />
             <Stack.Screen name="Deck" component={IndividualDeckView} />
             <Stack.Screen name="New Question" component={NewQuestionView} />
             <Stack.Screen name="Quiz" component={QuizView} />

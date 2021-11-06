@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 class QuizView extends Component {
 
@@ -10,7 +11,7 @@ class QuizView extends Component {
         show_answer: false,
         showAnswerButton: true,
     };
-
+    
     render() {
 
         const { decks } = this.props;
@@ -21,9 +22,15 @@ class QuizView extends Component {
         let question ='';
         let answer = '';
 
+        
         if(this.state.current_qn_idx < questions.length) {
             question = questions[this.state.current_qn_idx].question;
             answer = questions[this.state.current_qn_idx].answer;
+        }
+        else {
+            //clear and reset notifications after user has completed quiz
+            clearLocalNotification()
+                .then(setLocalNotification)
         }
 
         return(
