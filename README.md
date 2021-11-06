@@ -32,7 +32,7 @@ This is a directory tree for the application.
 │   ├── NewQuestionView.js #view to create cards for a deck
 │   └── Quiz.js # view to take a quiz
 ── reducers # reducers
-    ├── index.js
+│   ├── index.js
 ── utils
     ├── api.js #handle ansync storage logic for the application
     ├── notifications.js #handle application notifications

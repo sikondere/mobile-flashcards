@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 import NewDeckView from './components/NewDeckView';
 import DeckListView from './components/DeckListView';
@@ -43,7 +44,16 @@ export default class App extends React.Component {
 
 function TabRouter() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+              if (route.name === 'Home') 
+                  return <Ionicons size={size} name={'home'} color={color} />;
+              if (route.name === 'Add Deck') 
+                  return <Ionicons size={size} name={'add-circle'} color={color} />;
+          },
+      })}
+    >
       <Tab.Screen name='Home' component={DeckListView} />
       <Tab.Screen name='Add Deck' component={NewDeckView} />
     </Tab.Navigator>

@@ -12,7 +12,7 @@ export function clearLocalNotification() {
 function createNotification() {
     return {
         title: 'take quiz',
-        body: 'study',
+        body: 'you have not taken the quiz yet',
         ios: {
             sound: true,
         },
@@ -31,15 +31,15 @@ export function setLocalNotification() {
         .then((data) => {
             if (data === null) {
                 Notifications.requestPermissionsAsync().then(({ granted }) => {
-                    console.log(granted)
+                    console.log(` status granted: ${granted}`)
                     if (granted) {
                         Notifications.cancelAllScheduledNotificationsAsync().then(
                             () => {
                                 Notifications.scheduleNotificationAsync({
                                     content: createNotification(),
                                     trigger: {
-                                        hour: 9, 
-                                        minute: 30, 
+                                        hour: 11, 
+                                        minute: 10, 
                                         repeats: true 
                                     },
                                 }).then(() => {
